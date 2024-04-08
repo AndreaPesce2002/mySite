@@ -38,6 +38,16 @@ source .venv/bin/activate
 # Scarica Django, React e le librerie necessarie per il frontend
 pip install django django-cors-headers
 pip install djangorestframework
+pip install asgiref
+pip install backports.zoneinfo
+pip install sqlparse
+pip install typing-extensions
+pip install django-webpack-loader
+
+npm install axios
+npm install react-router-dom
+
+# Crea un progetto React chiamato "frontend"
 npx create-react-app frontend
 
 # Crea un progetto Django chiamato "backend"
@@ -56,17 +66,25 @@ echo -e "STATICFILES_DIRS = [\n    os.path.join(settings.BASE_DIR, 'frontend/bui
 
 # Configura Django per utilizzare il middleware CORS
 inserisci_stringa_dopo "MIDDLEWARE = \[" "    'corsheaders.middleware.CorsMiddleware'," "backend/backend/settings.py"
-inserisci_stringa_dopo "INSTALLED_APPS = \[" "    'rest_framework'," "backend/backend/settings.py"
+inserisci_stringa_dopo "INSTALLED_APPS = \[" "    'rest_framework',    'rest_framework.authtoken',    'backend', " "backend/backend/settings.py"
 
 # Configura le opzioni CORS nel file settings.py
 echo -e "CORS_ORIGIN_ALLOW_ALL = True\n" >> backend/backend/settings.py
+
+
+# Configura le opzioni CORS nel file settings.py
+echo -e "REST_FRAMEWORK = {
+    'DEFAULT_AUTHENTICATION_CLASSES': [
+        'rest_framework.authentication.TokenAuthentication',
+    ],
+    # Aggiungi altre configurazioni del REST framework se necessario
+}" >> backend/backend/settings.py 
 
 # Esegui le migrazioni del database Django
 python backend/manage.py migrate
 
 # Crea il file requirements.txt con le dipendenze del progetto
 pip freeze > requirements.txt
-echo "File requirements.txt creato con successo."
 
 # Libera le porte
 terminate_process_on_port 8000
