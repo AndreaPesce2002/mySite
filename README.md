@@ -6,19 +6,19 @@ This Bash script automates the setup process for a Django-React project, streaml
 
 1. Make the script executable:
     ```bash
-    chmod +x setup.sh
+    chmod +x creaAmbienteBase.sh
     ```
 
 2. Run the script:
     ```bash
-    ./setup.sh
+    ./creaAmbienteBase.sh
     ```
 
 This script performs tasks such as creating a virtual environment, configuring the Django database, and launching Django and npm servers in separate terminals.
 
 ## Features
 
-- Virtual environment setup
+- Virtual environment creaAmbienteBase
 - Dependency installation for Python and JavaScript
 - Django and React configuration
 - CORS support
@@ -26,6 +26,3 @@ This script performs tasks such as creating a virtual environment, configuring t
 
 Feel free to customize the script based on your project's specific requirements.
 
-## Author
-
-Pesce Andrea
