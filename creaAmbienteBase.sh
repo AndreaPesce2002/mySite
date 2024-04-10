@@ -50,6 +50,13 @@ npm install react-router-dom
 # Crea un progetto React chiamato "frontend"
 npx create-react-app frontend
 
+cd frontend
+npm install axios
+npm install react-router-dom
+
+cd ..
+
+
 # Crea un progetto Django chiamato "backend"
 django-admin startproject backend
 
