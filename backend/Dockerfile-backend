@@ -1,0 +1,20 @@
+# Usa come base l'immagine di python incantata
+FROM python:3.8
+
+# Imposta il direttorio di lavoro nel contenitore
+WORKDIR /app
+
+# Copia il grimorio di dipendenze
+COPY requirements.txt .
+
+# Esegui l'incantesimo per installare le dipendenze
+RUN pip install --no-cache-dir -r requirements.txt
+
+# Copia il resto del regno backend nel contenitore
+COPY backend .
+
+# Dichiara la porta sulla quale il servizio sarà accessibile
+EXPOSE 8000
+
+# Il comando per avviare il regno del backend
+CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]

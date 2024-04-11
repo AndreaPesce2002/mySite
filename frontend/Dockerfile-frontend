@@ -1,0 +1,26 @@
+# Parti dall'immagine di Node.js, il custode degli alberi di reattività
+FROM node:14
+
+# Imposta il direttorio di lavoro nel contenitore
+WORKDIR /app
+
+# Copia il file package.json e package-lock.json
+COPY package.json package-lock.json ./
+
+# Esegui l'incantesimo per tessere le dipendenze
+RUN npm install
+
+# Copia il resto del regno frontend nel contenitore
+COPY . .
+
+# Costruisci il regno frontend per la distribuzione
+RUN npm run build
+
+# Installa un server statico per servire il tuo regno
+RUN npm install -g serve
+
+# Dichiara la porta sulla quale il regno sarà accessibile
+EXPOSE 5000
+
+# Il comando per avviare il regno frontend
+CMD ["serve", "-s", "build", "-l", "5000"]
