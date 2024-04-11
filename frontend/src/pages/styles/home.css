@@ -3,32 +3,34 @@
     display: flex;
     justify-content: center;
     align-items: center;
-    height: 10vh;
     font-size: 5rem;
     color: white;
     position: relative;
+    transition: 0.5s;
 }
 
-.text {
-    position: relative;
-}
-
-.text::after {
-    content: "|";
-    display: inline-block;
-    opacity: 0; /* Inizialmente nascosto */
-    animation: cursor-blink 1s infinite; /* Animazione per far lampeggiare il cursore */
-}
-
-@keyframes cursor-blink {
-    0% {
-        opacity: 1;
+/* A schermi più piccoli, il testo si ridurrà come un gatto che si acciambella per sonnecchiare */
+@media (max-width: 1200px) {
+    .typing-text {
+        font-size: 4rem; /* Leggermente più piccolo */
     }
-    50% {
-        opacity: 0;
+}
+
+@media (max-width: 992px) {
+    .typing-text {
+        font-size: 3rem; /* Ancora più piccolo */
     }
-    100% {
-        opacity: 1;
+}
+
+@media (max-width: 768px) {
+    .typing-text {
+        font-size: 2rem; /* Adatto per tablet */
+    }
+}
+
+@media (max-width: 576px) {
+    .typing-text {
+        font-size: 1.5rem; /* Perfetto per i cellulari */
     }
 }
 
@@ -39,7 +41,6 @@
     justify-content: center;
     align-items: center;
     height: 100vh;
-    font-size: 5rem; /* Questo sembra troppo grande per il testo di benvenuto, potresti volerlo ridurre */
     color: white; /* Questo colore sarà applicato a tutti i discendenti, se non sovrascritto */
     position: relative;
 }
@@ -65,11 +66,11 @@
 
 .typing-cursor {
     border-right: 2px solid transparent;
-  }
+}
 
-  .typing-cursor.show-cursor {
+.typing-cursor.show-cursor {
     border-right: 2px solid rgba(255, 255, 255); /* Un bianco molto tenue */
-  }
+}
 
 .typing-cursor p{
     margin-right: 10px;

@@ -5,7 +5,7 @@ import { SocialIcon } from 'react-social-icons';
 const TypingText = () => {
   const [text, setText] = useState('');
   const [showCursor, setShowCursor] = useState(true); // Inizia con il cursore visibile
-  const fullText = 'I Am A Developer. ';
+  const fullText = 'I Am A Web Developer. ';
 
   useEffect(() => {
     setText("<p>")
