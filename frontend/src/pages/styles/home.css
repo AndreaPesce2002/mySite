@@ -1,0 +1,92 @@
+/* TypingText.css */
+.typing-text {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 10vh;
+    font-size: 5rem;
+    color: white;
+    position: relative;
+}
+
+.text {
+    position: relative;
+}
+
+.text::after {
+    content: "|";
+    display: inline-block;
+    opacity: 0; /* Inizialmente nascosto */
+    animation: cursor-blink 1s infinite; /* Animazione per far lampeggiare il cursore */
+}
+
+@keyframes cursor-blink {
+    0% {
+        opacity: 1;
+    }
+    50% {
+        opacity: 0;
+    }
+    100% {
+        opacity: 1;
+    }
+}
+
+/* Home.css */
+.home-container {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    font-size: 5rem; /* Questo sembra troppo grande per il testo di benvenuto, potresti volerlo ridurre */
+    color: white; /* Questo colore sarà applicato a tutti i discendenti, se non sovrascritto */
+    position: relative;
+}
+
+.home-container::before {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-image: url('https://www.ilmaritoinaffitto.it/wp-content/uploads/2021/10/shutterstock_1505521289.jpeg');
+    background-size: cover;
+    background-position: center;
+    z-index: -1;
+    opacity: 0.2; /* Imposta l'opacità desiderata (0.0 - 1.0) */
+}
+
+.welcome-text {
+    font-size: 2rem; /* Riduci la dimensione del testo */
+    margin-bottom: 20px; /* Aggiungi un margine sotto il testo di benvenuto */
+}
+
+.typing-cursor {
+    border-right: 2px solid transparent;
+  }
+
+  .typing-cursor.show-cursor {
+    border-right: 2px solid rgba(255, 255, 255); /* Un bianco molto tenue */
+  }
+
+.typing-cursor p{
+    margin-right: 10px;
+    height: 100%;
+    margin-top: 0px;
+    margin-bottom: 0px;
+}
+
+.social-links {
+    display: flex;
+    justify-content: center;
+    gap: 10px;
+    margin-top: 20px;
+}
+
+.social-links .social-icon {
+    height: 35px;
+    width: 35px;
+
+}

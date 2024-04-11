@@ -10,11 +10,13 @@ terminate_process_on_port() {
     fi
 }
 
+activate .venv/bin/activate
+
 git fetch
 git pull origin main
 
 python backend/manage.py makemigrations
-python backend/manage.py migrate7
+python backend/manage.py migrate
 
 pip freeze > requirements.txt
 
