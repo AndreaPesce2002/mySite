@@ -2,3 +2,5 @@
 frontend/node_modules
 backend/backend/__pycache__
 .venv
+backend/backend/migrations
+backend/db.sqlite3

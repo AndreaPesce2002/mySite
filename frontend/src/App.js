@@ -1,6 +1,7 @@
 import React, { useState, useEffect } from 'react';
 import './App.css';
 import Home from './pages/home.js';
+import Work from './pages/work.js';
 
 
 function App() {
@@ -11,7 +12,8 @@ function App() {
     switch (currentPage) {
       case 'home':
         return <Home />;
-      // Aggiungi qui i casi per le altre pagine
+      case 'work':
+        return <Work />
       default:
         return <Home />;
     }
@@ -44,7 +46,7 @@ function App() {
         <div className="brand">Andrea Pesce</div>
         <nav>
           <a href="#home" onClick={() => setCurrentPage('home')}>Home</a>
-          <a href="#work">Work</a>
+          <a href="#work" onClick={() => setCurrentPage('work')}>Work</a>
           <a href="#cv">CV</a>
           <a href="#contact">Contact</a>
         </nav>

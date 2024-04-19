@@ -70,8 +70,9 @@ body {
   border: 1px solid rgba(255,255,255,.15);
   border-radius: 32px;
   background: linear-gradient(transparent, rgba(0,0,0,0.85)); /* Sfumatura verso il basso */
-  overflow: hidden; /* Nasconde il contenuto che va oltre il bordo */
-}
+  overflow: auto; /* Aggiunge barre di scorrimento se necessario */
+  color: #f0f0f0;
+ }
 
 .header.nascondi {
   transform: translateY(-200%); /* Sposta l'header fuori dalla vista verso l'alto */

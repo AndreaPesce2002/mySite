@@ -15,8 +15,8 @@ activate .venv/bin/activate
 git fetch
 git pull origin main
 
-python backend/manage.py makemigrations
-python backend/manage.py migrate
+#python backend/manage.py makemigrations backend --empty
+#python backend/manage.py migrate
 
 pip freeze > requirements.txt
 

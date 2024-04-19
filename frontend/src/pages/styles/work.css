@@ -1,0 +1,40 @@
+.work_page {
+    position: relative;
+    width: 100%; /* Assicurati di impostare una larghezza */
+    height: 100%;
+    overflow: hidden; /* Se non vuoi scroll sul genitore */
+}
+.sketch_wrapper {
+    position: absolute; /* Rimane all'interno del .work_page */
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    z-index: -1; /* Continua a stare sotto agli altri elementi */
+    overflow: hidden; /* Se non vuoi scroll sul genitore */
+}
+
+.container_work_card {
+    position: relative;
+    display: flex;
+    padding-top: 100px;
+    padding-right: 30px;
+    padding-left: 30px;
+    overflow-y: auto;
+    z-index: 2;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: flex-start;
+    width: 100%;
+    height: calc(100% - 200px); /* Sottrai i padding sopra e sotto */
+}
+
+.sketch_css {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    transform: scale(1);
+}
+

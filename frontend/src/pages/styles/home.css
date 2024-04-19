@@ -40,7 +40,7 @@
     flex-direction: column;
     justify-content: center;
     align-items: center;
-    height: 100vh;
+    height: 100%;
     color: white; /* Questo colore sarà applicato a tutti i discendenti, se non sovrascritto */
     position: relative;
 }
