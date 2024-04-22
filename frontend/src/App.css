@@ -40,7 +40,8 @@ body {
   align-items: center;
   padding: 0 16px;
   background: transparent;
-  margin: 16px;
+  margin-left: 16px;
+  margin-right: 16px;
   color: white;
   z-index: 100; /* Assicurati che il menu sia sempre sopra */
   border: none; /* Rimuove il bordo */
@@ -83,4 +84,51 @@ body {
 .header {
   transform: translateY(0);
   transition: transform 0.7s ease-out; /* Una transizione fluida */
+}
+
+.underline {
+  position: absolute;
+  bottom: -1px;
+  left: 0;
+  right: 0;
+  height: 1px;
+  background-color: #f0f0f0; /* Scegli il colore che preferisci */
+}
+
+ul,
+li {
+  list-style: none;
+  padding: 0;
+  margin: 0;
+  font-weight: 500;
+}
+
+ul {
+  display: flex;
+  width: 100%;
+}
+
+li {
+  border-radius: 5px;
+  border-bottom-left-radius: 0;
+  border-bottom-right-radius: 0;
+  width: 100%;
+  padding: 10px 15px;
+  cursor: pointer;
+  height: 24px;
+  display: flex;
+  justify-content: center;
+  align-items: flex-end;
+  flex: 1 1;
+  min-width: 0;
+  position: relative;
+  -webkit-user-select: none;
+  user-select: none;
+  flex-wrap: nowrap;
+  align-content: center;
+
+}
+
+.not-acrive{
+  color: #808080; /* Grigio */
 }

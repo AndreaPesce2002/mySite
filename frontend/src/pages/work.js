@@ -7,7 +7,8 @@ import Sketch from "react-p5";
 const WorkPage = () => {
   const [works, setWorks] = useState([]);
   const [punti, setPunti] = useState([]);
-  const [windowSize, setWindowSize] = useState({ width: window.innerWidth, height: window.innerHeight });
+
+  
  
 
   useEffect(() => {
@@ -18,7 +19,7 @@ const WorkPage = () => {
   }, []);
 
   const setup = (p5, canvasParentRef) => {
-    p5.createCanvas(p5.windowWidth, p5.windowHeight).parent(canvasParentRef);
+    p5.createCanvas(1866, 919).parent(canvasParentRef);
     const puntiIniziali = [];
     for (let i = 0; i < 200; i++) {
       puntiIniziali.push(new Punto(p5)); // Utilizza una nuova istanza di p5
@@ -27,7 +28,7 @@ const WorkPage = () => {
   };
 
   const draw = (p5) => {
-    p5.background(30);
+    p5.background(10);
     punti.forEach(punto => {
       punto.muovi();
       punto.mostra();
@@ -46,8 +47,8 @@ const WorkPage = () => {
   class Punto {
     constructor(p) {
       this.p5 = p;
-      this.x = this.p5.random(this.p5.windowWidth);
-      this.y = this.p5.random(this.p5.windowHeight);
+      this.x = this.p5.random(1866);
+      this.y = this.p5.random(919);
       this.velocitaX = this.p5.random(-0.1, 0.1);
       this.velocitaY = this.p5.random(-0.1, 0.1);
     }

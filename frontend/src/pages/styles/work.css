@@ -19,14 +19,13 @@
     display: flex;
     padding-top: 100px;
     padding-right: 30px;
-    padding-left: 30px;
     overflow-y: auto;
     z-index: 2;
     flex-direction: row;
     flex-wrap: wrap;
-    justify-content: flex-start;
+    justify-content: center;
     width: 100%;
-    height: calc(100% - 200px); /* Sottrai i padding sopra e sotto */
+    height: calc(100% - 200px);
 }
 
 .sketch_css {

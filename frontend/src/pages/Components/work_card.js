@@ -1,6 +1,9 @@
 import './styles/work_card.css';
+import React, { useEffect } from 'react';
+
 
 const WorkCard = ({ title, description, image }) => {
+
   return (
       <div className="card_work_card">
         <div className="image_work_card">
