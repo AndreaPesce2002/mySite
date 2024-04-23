@@ -20,6 +20,10 @@ git pull origin main
 
 pip freeze > requirements.txt
 
+# Copia il file requirements.txt nella cartella ./frontend e ./backend
+cp requirements.txt ./frontend/
+cp requirements.txt ./backend/
+
 # libera le porte
 terminate_process_on_port 8000
 terminate_process_on_port 3000

@@ -17,7 +17,7 @@
 .container_work_card {
     position: relative;
     display: flex;
-    padding-top: 100px;
+    /* padding-top: 100px; */
     padding-right: 30px;
     overflow-y: auto;
     z-index: 2;
@@ -25,7 +25,9 @@
     flex-wrap: wrap;
     justify-content: center;
     width: 100%;
-    height: calc(100% - 200px);
+    height: 100%;
+    align-content: flex-start;
+    transition: 1s;
 }
 
 .sketch_css {

@@ -7,16 +7,23 @@ import Sketch from "react-p5";
 const WorkPage = () => {
   const [works, setWorks] = useState([]);
   const [punti, setPunti] = useState([]);
-
-  
+  const [bgColor, setBgColor] = useState('initial');
  
 
   useEffect(() => {
     fetch('http://127.0.0.1:8000/works/')
       .then(response => response.json())
       .then(data => setWorks(data));
+ }, []);
 
-  }, []);
+ // Funzioni per gestire gli eventi del mouse
+ const handleMouseEnter = (e) => {
+    setBgColor('rgba(0, 0, 0, 0.6)'); // Cambia il colore dello sfondo quando il mouse entra
+ };
+
+ const handleMouseLeave = () => {
+    setBgColor('initial'); // Ripristina il colore originale quando il mouse esce
+  };
 
   const setup = (p5, canvasParentRef) => {
     p5.createCanvas(1866, 919).parent(canvasParentRef);
@@ -79,17 +86,26 @@ const WorkPage = () => {
 
   return (
     <div className='work_page'>
-       <div className="sketch_wrapper">
+       <div className="sketch_wrapper" >
          <Sketch setup={setup} draw={draw} className={'sketch_css'}/>
        </div>
-       <div className="container_work_card">  
+       <div 
+         className="container_work_card" 
+         style={{ backgroundColor: bgColor }} // Applica il colore dello sfondo
+        >  
         {works.map((work, index) => (
+          <div
+            onMouseEnter={handleMouseEnter}
+            onMouseLeave={handleMouseLeave}
+            >
           <WorkCard
             key={index}
             title={work.title}
             description={work.description}
             image={'http://127.0.0.1:8000' + work.image}
           />
+          </div>
+          
         ))}
        </div>
     </div>

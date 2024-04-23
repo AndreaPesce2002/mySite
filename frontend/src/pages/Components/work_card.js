@@ -1,19 +1,35 @@
-import './styles/work_card.css';
-import React, { useEffect } from 'react';
+import * as React from 'react';
+import Card from '@mui/material/Card';
+import CardContent from '@mui/material/CardContent';
+import CardMedia from '@mui/material/CardMedia';
+import Typography from '@mui/material/Typography';
+import { Button, CardActionArea, CardActions } from '@mui/material';
+import { useTheme } from '@mui/material/styles';
 
 
 const WorkCard = ({ title, description, image }) => {
+ const theme = useTheme();
 
   return (
-      <div className="card_work_card">
-        <div className="image_work_card">
-          <img src={image} alt={title} />
-        </div>
-        <div className="content_work_card">
-          <h3>{title}</h3>
-          <p>{description}</p>
-        </div>
-      </div>
+    <Card sx={{ maxWidth: 345, maxHeight: 355, backgroundColor: theme.palette.background.paper, marginLeft: 3, marginRight: 3, marginTop:6 }}>
+      <CardActionArea>
+        <CardMedia
+          component="img"
+          height="140"
+          image={image}
+          alt={title}
+          style={{ objectFit: 'cover', objectPosition: 'top' }}
+        />
+        <CardContent>
+          <Typography gutterBottom variant="h5" component="div">
+            {title}
+          </Typography>
+          <Typography variant="body2" color="text.secondary">
+            {description}
+          </Typography>
+        </CardContent>
+      </CardActionArea>
+    </Card>
   );
 };
 

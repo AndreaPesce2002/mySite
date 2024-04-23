@@ -3,7 +3,8 @@ import { AnimatePresence, motion } from 'framer-motion';
 import './App.css';
 import Home from './pages/home.js';
 import Work from './pages/work.js';
-
+import { ThemeProvider } from '@mui/material/styles';
+import theme from './theme'; // Assicurati che il percorso sia corretto
 
 
 function App() {
@@ -101,6 +102,7 @@ function App() {
  }, [superato]);
 
   return (
+    <ThemeProvider theme={theme}>
     <div className="App">
     <header className={`header ${nascondiHeader ? 'nascondi' : ''}`}>
       <div className="brand">Andrea Pesce</div>
@@ -139,7 +141,9 @@ function App() {
               
             </motion.div>
           </AnimatePresence>
-      </div>
+      </div>  
+    </ThemeProvider>
+    
  );
 }
 
