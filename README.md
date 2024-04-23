@@ -30,6 +30,7 @@ il codice è ancora in fase di progettazione e questa è solo una beta e un gioc
 
 Questo comando costruirà le immagini Docker per il backend e il frontend (se necessario) e avvierà i servizi. Il backend sarà accessibile su `http://localhost:8000` e il frontend su `http://localhost:5000`.
 
-## foto
+## screen
 
-![alt text](img_README/img_sito.png)
+![alt text](<img_README/Opera Snapshot_2024-04-23_140435_localhost.png>)
+![alt text](<img_README/Opera Snapshot_2024-04-23_140511_localhost.png>)

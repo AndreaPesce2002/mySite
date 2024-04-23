@@ -1,4 +1,4 @@
-version: '3.8'
+version: '3.7'
 
 services:
   backend:
@@ -7,7 +7,7 @@ services:
       dockerfile: Dockerfile-backend
     volumes:
       - ./backend:/app
-      - ./backend/db.sqlite3:/app/db.sqlite3  # Assicurati che il tuo database sia 
+      - ./backend/db.sqlite3:/app/db.sqlite3
     ports:
       - "8000:8000"
     command: python manage.py runserver 0.0.0.0:8000
