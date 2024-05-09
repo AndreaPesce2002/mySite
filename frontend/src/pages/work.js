@@ -103,6 +103,7 @@ const WorkPage = () => {
             title={work.title}
             description={work.description}
             image={'http://127.0.0.1:8000' + work.image}
+            url={work.url}
           />
           </div>
           
