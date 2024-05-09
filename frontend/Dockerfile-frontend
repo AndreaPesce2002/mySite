@@ -1,5 +1,5 @@
 # Parti dall'immagine di Node.js, il custode degli alberi di reattività
-FROM node:14
+FROM node:21
 
 # Imposta il direttorio di lavoro nel contenitore
 WORKDIR /app

@@ -4,3 +4,5 @@ backend/backend/__pycache__
 .venv
 backend/backend/migrations
 backend/db.sqlite3
+cheshire-cat-ai/tests
+cheshire-cat-ai/cat/db/__pycache__

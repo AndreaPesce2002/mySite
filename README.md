@@ -6,7 +6,7 @@ MySite è un progetto web che combina un backend e un frontend. Utilizza Docker 
 
 #### avvertimento
 
-il codice è ancora in fase di progettazione e questa è solo una beta e un gioco per mettermi alla prova
+il codice è ancora in fase di progettazione e questa è solo una beta ed un gioco per mettermi alla prova
 
 ## Prerequisiti
 

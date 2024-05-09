@@ -1,5 +1,5 @@
 # Usa come base l'immagine di python incantata
-FROM python:3.8
+FROM python:3.10.12
 
 # Imposta il direttorio di lavoro nel contenitore
 WORKDIR /app
@@ -13,8 +13,11 @@ RUN pip install --no-cache-dir -r requirements.txt
 # Copia il resto del regno backend nel contenitore
 COPY backend .
 
+# Copia lo script di gestione
+COPY manage_services.py .
+
 # Dichiara la porta sulla quale il servizio sarà accessibile
 EXPOSE 8000
 
 # Il comando per avviare il regno del backend
-CMD ["python", "manage.py", "runserver", "0.0.0.0:8000"]
+CMD ["python", "manage_services.py"]

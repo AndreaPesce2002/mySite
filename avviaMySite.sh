@@ -33,3 +33,12 @@ gnome-terminal -- /bin/sh -c 'python backend/manage.py runserver; exec bash'
 
 # 12. Naviga nella cartella del frontend e avvia il server npm in un altro nuovo terminale
 gnome-terminal -- /bin/sh -c 'cd frontend; npm start; exec bash'
+
+# avvia catto
+cd ./backend/CCAT
+
+docker-compose down
+# Remove dangling images (optional)
+docker rmi -f $(docker images -f "dangling=true" -q)
+docker-compose up
+
