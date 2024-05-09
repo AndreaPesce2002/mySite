@@ -30,6 +30,10 @@ il codice è ancora in fase di progettazione e questa è solo una beta ed un gio
 
 Questo comando costruirà le immagini Docker per il backend e il frontend (se necessario) e avvierà i servizi. Il backend sarà accessibile su `http://localhost:8000` e il frontend su `http://localhost:5000`.
 
+## avvertimenti
+attualemtne la funzione dell'assistente CCAT non è stabile avviando il programma tramite doker compose.
+tuttavia se desidetrate testare la fuznioen potete utilizzare il comando ./avviMysite il quale vi permetterà di utilizzare senza probelmi anche la funione CCAT assistant
+
 ## screen
 ![alt text](img_README/imag_sito.png) 
 ![alt text](img_README/imag_sito_2.png) 

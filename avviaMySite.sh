@@ -40,5 +40,8 @@ cd ./backend/CCAT
 docker-compose down
 # Remove dangling images (optional)
 docker rmi -f $(docker images -f "dangling=true" -q)
+
+gnome-terminal -- /bin/sh -c 'python ./caricaMemory.py; exec bash'
+
 docker-compose up
 
