@@ -32,5 +32,7 @@ Questo comando costruirà le immagini Docker per il backend e il frontend (se ne
 
 ## screen
 
-![alt text](<img_README/Opera Snapshot_2024-04-23_140435_localhost.png>)
-![alt text](<img_README/Opera Snapshot_2024-04-23_140511_localhost.png>)
+![alt text](img_README/imag_sito_2.png) 
+![alt text](img_README/imag_sito_4.png) 
+![alt text](img_README/imag_sito.png) 
+![alt text](img_README/imag_soito_3.png)
