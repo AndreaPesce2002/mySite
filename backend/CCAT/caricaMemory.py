@@ -1,6 +1,7 @@
 import time
 import cheshire_cat_api as ccat
 import requests
+import os
 
 def on_open():
     # This is triggered when the connection is opened
@@ -71,7 +72,14 @@ else:
     print(response.text)
 
 # Send the message
-cat_client.rabbit_hole.upload_memory('backend/CCAT/Recalled_Memories.json')
+# Ottieni il percorso corrente del tuo script
+current_dir = os.path.dirname(os.path.abspath(__file__))
+
+# Costruisci il percorso assoluto del file
+file_path = os.path.join(current_dir, 'Recalled_Memories.json')
+
+# Ora puoi utilizzare file_path per il tuo metodo upload_memory
+cat_client.rabbit_hole.upload_memory(file_path)
 
 # Close connection
 cat_client.close()
