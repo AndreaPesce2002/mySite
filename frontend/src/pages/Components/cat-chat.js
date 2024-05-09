@@ -4,6 +4,7 @@ import TextField from "@mui/material/TextField";
 import { IoSend } from "react-icons/io5";
 import Button from "@mui/material/Button";
 import { CatClient } from "ccat-api";
+import Swal from "sweetalert2";
 
 const ChatPage = () => {
   const [messages, setMessages] = useState([]);
@@ -11,20 +12,10 @@ const ChatPage = () => {
   const [isProcessing, setIsProcessing] = useState(false);
   const messagesContainerRef = useRef(null);
   const [gatto_attivo, setGattoAttivo] = useState(false);
+  const [cat, setcat] = useState(false);
 
-  // Modifica la configurazione di cat per gestire gli eventi di connessione
-  const cat = new CatClient({
-    baseUrl: "localhost",
-    port: "1864",
-  })
-    .onConnected(() => {
-      console.log("Socket connected");
-      setGattoAttivo(true); // Imposta gatto_attivo a true quando la connessione è stabilita
-    })
-    .onError((err) => {
-      console.log(err);
-      setGattoAttivo(false); // Imposta gatto_attivo a false in caso di errore
-    });
+  // or via CommonJS
+  const Swal = require("sweetalert2");
 
   // Simula l'invio di un messaggio
   const sendMessage = async () => {
@@ -90,7 +81,21 @@ const ChatPage = () => {
   // Aggiungi un messaggio iniziale quando il componente viene montato
   useEffect(() => {
     async function restCCAT() {
-      if(gatto_attivo){
+      setcat(
+        new CatClient({
+          baseUrl: "localhost",
+          port: "1864",
+        })
+          .onConnected(() => {
+            console.log("Socket connected");
+            setGattoAttivo(true); // Imposta gatto_attivo a true quando la connessione è stabilita
+          })
+          .onError((err) => {
+            console.log(err);
+            setGattoAttivo(false); // Imposta gatto_attivo a false in caso di errore
+          })
+      );
+      if (gatto_attivo) {
         setMessages([
           {
             text: "Ciao Sono lo Stregatto, una intelligenza artificiale curiosa e cortese. Sono qui per aiutarti a conoscere meglio Andrea Pesce.",
@@ -98,8 +103,8 @@ const ChatPage = () => {
           },
         ]);
         cat.api.memory.wipeConversationHistory();
-        console.log(cat.api);  
-      }else{
+        console.log(cat.api);
+      } else {
         setMessages([
           {
             text: "ciao, scusami ma attualemnte non sono neancora attivo",
@@ -107,7 +112,6 @@ const ChatPage = () => {
           },
         ]);
       }
-      
     }
     restCCAT();
   }, [gatto_attivo]);
@@ -161,6 +165,27 @@ const ChatPage = () => {
           <IoSend />
         </Button>
       </div>
+      <p
+        style={{
+          fontSize: "0.8rem",
+          margin: "0",
+          marginLeft: 10,
+          color: "#999",
+          cursor: "help",
+        }}
+        onClick={() =>
+          Swal.fire({
+            title: "Informazioni sul Modello",
+            html: `
+              <p>Il modello utilizzato è <a href='https://llama.meta.com/llama3/'>llama-3</a> con <a href='https://groq.com'>GROQ</a> unito con il <a href='https://cheshirecat.ai'>CCAT<a>.</p>
+              <p>i LLM possono darti anche informazioni errate essendo enormi modelli probabilistici</p>
+            `,
+            icon: "info",
+          })
+        }
+      >
+        i LLM posso fare errori, stai attento alle allucinazioni
+      </p>
     </div>
   );
 };
