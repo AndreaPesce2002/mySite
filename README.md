@@ -31,8 +31,7 @@ il codice è ancora in fase di progettazione e questa è solo una beta ed un gio
 Questo comando costruirà le immagini Docker per il backend e il frontend (se necessario) e avvierà i servizi. Il backend sarà accessibile su `http://localhost:8000` e il frontend su `http://localhost:5000`.
 
 ## screen
-
-![alt text](img_README/imag_sito_2.png) 
-![alt text](img_README/imag_sito_4.png) 
 ![alt text](img_README/imag_sito.png) 
+![alt text](img_README/imag_sito_2.png) 
 ![alt text](img_README/imag_soito_3.png)
+![alt text](img_README/imag_sito_4.png) 
