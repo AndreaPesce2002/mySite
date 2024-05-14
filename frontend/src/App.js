@@ -31,15 +31,12 @@ function App() {
     { name: "Contact", path: "/contact", active: false },
   ];
 
-  const page = ["home", "work"];
-
-  const [currentPage, setCurrentPage] = useState(page[0]);
-  const [currentIndex, setCurrentIndex] = useState(0);
+  const [currentPage, setCurrentPage] = useState(menuItems[0].name);
 
   const handleMenuItemClick = (index) => {
-    setCurrentIndex(index);
-    setCurrentPage(page[index]);
+    setCurrentPage(menuItems[index].name);
   };
+
   const [ultimoScrollY, setUltimoScrollY] = useState(0);
   const [nascondiHeader, setNascondiHeader] = useState(false);
 
@@ -57,11 +54,11 @@ function App() {
 
   const renderPage = () => {
     switch (currentPage) {
-      case page[0]:
+      case menuItems[0].name:
         return <Home />;
-      case page[1]:
+      case menuItems[1].name:
         return <Work />;
-      case page[3]:
+      case menuItems[2].name:
         return <CV />;
       default:
         return <Home />;
@@ -102,7 +99,8 @@ function App() {
                   className={item.active ? "" : "not-acrive"}
                 >
                   {item.name}
-                  {currentPage === item.path.substring(1) && (
+
+                  {currentPage === item.name && (
                     <motion.div className="underline" layoutId="underline" />
                   )}
                 </li>
