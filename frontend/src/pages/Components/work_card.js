@@ -6,11 +6,11 @@ import Typography from "@mui/material/Typography";
 import { CardActionArea } from "@mui/material";
 import { useTheme } from "@mui/material/styles";
 
-const WorkCard = ({ title, description, image,url }) => {
+const WorkCard = ({ title, description, image, url }) => {
   const theme = useTheme();
 
   const handleCardClick = () => {
-    window.open(url, '_blank', 'noopener,noreferrer');
+    window.open(url, "_blank", "noopener,noreferrer");
   };
 
   return (

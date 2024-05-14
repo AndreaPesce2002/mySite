@@ -1,56 +1,56 @@
+.card_work_card {
+  position: relative;
+  max-width: 275px;
+  height: 215px;
+  background-color: #fff;
+  margin: 30px 10px;
+  /* padding : 10px 15px; */
 
-  .card_work_card {
-    position: relative;
-    max-width : 275px;
-    height : 215px;  
-    background-color : #fff;
-    margin : 30px 10px;
-    /* padding : 10px 15px; */
-    
-    display : flex;
-    flex-direction : column;
-    box-shadow : 0 5px 20px rgba(0,0,0,0.5);
-    transition : 0.3s ease-in-out;
-    border-radius : 15px;
-  }
-  .card_work_card:hover {
-    height : 320px;
-  }
-  
-  
-  .card_work_card .image_work_card {
-    position : relative;
-    width : 260px;
-    height : 260px;
-    
-    top : -40%;
-    left: 8px;
+  display: flex;
+  flex-direction: column;
+  box-shadow: 0 5px 20px rgba(0, 0, 0, 0.5);
+  transition: 0.3s ease-in-out;
+  border-radius: 15px;
+}
 
-    z-index : 1;
-  }
-  
-  .card_work_card .image_work_card img {
-    max-width : 100%;
-    border-radius : 15px;
-  }
-  
-  .card_work_card .content_work_card {
-    position : relative;
-    top : -140px;
-    padding : 0px 15px;
-    color : #111;
-    text-align : center;
-    
-    visibility : hidden;
-    opacity : 0;
-    transition : 0.3s ease-in-out;
-      
-  }
-  
-  .card_work_card:hover .content_work_card {
-     margin-top : 15px;
-     visibility : visible;
-     opacity : 1;
-     transition-delay: 0.2s;
-    
-  }
+.card_work_card:hover {
+  height: 320px;
+}
+
+
+.card_work_card .image_work_card {
+  position: relative;
+  width: 260px;
+  height: 260px;
+
+  top: -40%;
+  left: 8px;
+
+  z-index: 1;
+}
+
+.card_work_card .image_work_card img {
+  max-width: 100%;
+  border-radius: 15px;
+}
+
+.card_work_card .content_work_card {
+  position: relative;
+  top: -140px;
+  padding: 0px 15px;
+  color: #111;
+  text-align: center;
+
+  visibility: hidden;
+  opacity: 0;
+  transition: 0.3s ease-in-out;
+
+}
+
+.card_work_card:hover .content_work_card {
+  margin-top: 15px;
+  visibility: visible;
+  opacity: 1;
+  transition-delay: 0.2s;
+
+}

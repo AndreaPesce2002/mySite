@@ -1,28 +1,26 @@
-import React, { useState, useEffect } from 'react';
-import WorkCard from './Components/work_card.js';
-import './styles/work.css';
+import React, { useState, useEffect } from "react";
+import WorkCard from "./Components/work_card.js";
+import "./styles/work.css";
 import Sketch from "react-p5";
-
 
 const WorkPage = () => {
   const [works, setWorks] = useState([]);
   const [punti, setPunti] = useState([]);
-  const [bgColor, setBgColor] = useState('initial');
- 
+  const [bgColor, setBgColor] = useState("initial");
 
   useEffect(() => {
-    fetch('http://127.0.0.1:8000/works/')
-      .then(response => response.json())
-      .then(data => setWorks(data));
- }, []);
+    fetch("http://127.0.0.1:8000/works/")
+      .then((response) => response.json())
+      .then((data) => setWorks(data));
+  }, []);
 
- // Funzioni per gestire gli eventi del mouse
- const handleMouseEnter = (e) => {
-    setBgColor('rgba(0, 0, 0, 0.6)'); // Cambia il colore dello sfondo quando il mouse entra
- };
+  // Funzioni per gestire gli eventi del mouse
+  const handleMouseEnter = (e) => {
+    setBgColor("rgba(0, 0, 0, 0.6)"); // Cambia il colore dello sfondo quando il mouse entra
+  };
 
- const handleMouseLeave = () => {
-    setBgColor('initial'); // Ripristina il colore originale quando il mouse esce
+  const handleMouseLeave = () => {
+    setBgColor("initial"); // Ripristina il colore originale quando il mouse esce
   };
 
   const setup = (p5, canvasParentRef) => {
@@ -36,11 +34,11 @@ const WorkPage = () => {
 
   const draw = (p5) => {
     p5.background(10);
-    punti.forEach(punto => {
+    punti.forEach((punto) => {
       punto.muovi();
       punto.mostra();
     });
-    
+
     p5.stroke(255);
     punti.forEach((punto, index) => {
       for (let j = index + 1; j < punti.length; j++) {
@@ -85,32 +83,28 @@ const WorkPage = () => {
   }
 
   return (
-    <div className='work_page'>
-       <div className="sketch_wrapper" >
-         <Sketch setup={setup} draw={draw} className={'sketch_css'}/>
-       </div>
-       <div 
-         className="container_work_card" 
-         style={{ backgroundColor: bgColor }} // Applica il colore dello sfondo
-        >  
+    <div className="work_page">
+      <div className="sketch_wrapper">
+        <Sketch setup={setup} draw={draw} className={"sketch_css"} />
+      </div>
+      <div
+        className="container_work_card"
+        style={{ backgroundColor: bgColor }} // Applica il colore dello sfondo
+      >
         {works.map((work, index) => (
-          <div
-            onMouseEnter={handleMouseEnter}
-            onMouseLeave={handleMouseLeave}
-            >
-          <WorkCard
-            key={index}
-            title={work.title}
-            description={work.description}
-            image={'http://127.0.0.1:8000' + work.image}
-            url={work.url}
-          />
+          <div onMouseEnter={handleMouseEnter} onMouseLeave={handleMouseLeave}>
+            <WorkCard
+              key={index}
+              title={work.title}
+              description={work.description}
+              image={"http://127.0.0.1:8000" + work.image}
+              url={work.url}
+            />
           </div>
-          
         ))}
-       </div>
+      </div>
     </div>
-   );
+  );
 };
 
 export default WorkPage;

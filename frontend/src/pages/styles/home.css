@@ -12,25 +12,29 @@
 /* A schermi più piccoli, il testo si ridurrà come un gatto che si acciambella per sonnecchiare */
 @media (max-width: 1200px) {
     .typing-text {
-        font-size: 4rem; /* Leggermente più piccolo */
+        font-size: 4rem;
+        /* Leggermente più piccolo */
     }
 }
 
 @media (max-width: 992px) {
     .typing-text {
-        font-size: 3rem; /* Ancora più piccolo */
+        font-size: 3rem;
+        /* Ancora più piccolo */
     }
 }
 
 @media (max-width: 768px) {
     .typing-text {
-        font-size: 2rem; /* Adatto per tablet */
+        font-size: 2rem;
+        /* Adatto per tablet */
     }
 }
 
 @media (max-width: 576px) {
     .typing-text {
-        font-size: 1.5rem; /* Perfetto per i cellulari */
+        font-size: 1.5rem;
+        /* Perfetto per i cellulari */
     }
 }
 
@@ -41,7 +45,8 @@
     justify-content: center;
     align-items: center;
     height: 100%;
-    color: white; /* Questo colore sarà applicato a tutti i discendenti, se non sovrascritto */
+    color: white;
+    /* Questo colore sarà applicato a tutti i discendenti, se non sovrascritto */
     position: relative;
 }
 
@@ -56,12 +61,15 @@
     background-size: cover;
     background-position: center;
     z-index: -1;
-    opacity: 0.2; /* Imposta l'opacità desiderata (0.0 - 1.0) */
+    opacity: 0.2;
+    /* Imposta l'opacità desiderata (0.0 - 1.0) */
 }
 
 .welcome-text {
-    font-size: 2rem; /* Riduci la dimensione del testo */
-    margin-bottom: 20px; /* Aggiungi un margine sotto il testo di benvenuto */
+    font-size: 2rem;
+    /* Riduci la dimensione del testo */
+    margin-bottom: 20px;
+    /* Aggiungi un margine sotto il testo di benvenuto */
 }
 
 .typing-cursor {
@@ -69,10 +77,11 @@
 }
 
 .typing-cursor.show-cursor {
-    border-right: 2px solid rgba(255, 255, 255); /* Un bianco molto tenue */
+    border-right: 2px solid rgba(255, 255, 255);
+    /* Un bianco molto tenue */
 }
 
-.typing-cursor p{
+.typing-cursor p {
     margin-right: 10px;
     height: 100%;
     margin-top: 0px;
