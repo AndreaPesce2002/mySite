@@ -9,13 +9,6 @@ import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 
 function App() {
-  const lightTheme = createTheme({
-    palette: {
-      mode: "light", // Imposta il tema in modalità chiaro
-      // Personalizza i colori qui se necessario
-    },
-  });
-
   const darkTheme = createTheme({
     palette: {
       mode: "dark", // Imposta il tema in modalità dark
@@ -87,7 +80,13 @@ function App() {
     <ThemeProvider theme={darkTheme}>
       <div className="App">
         <header className={`header ${nascondiHeader ? "nascondi" : ""}`}>
-          <div className="brand">Andrea Pesce</div>
+          <div className="brand">
+            <img
+              src={require("./logo.png")}
+              className="logo"
+              alt="Andrea Pesce"
+            />
+          </div>
           <nav>
             <ul>
               {menuItems.map((item, index) => (
