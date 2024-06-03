@@ -8,3 +8,19 @@ class Work(models.Model):
 
     def __str__(self):
         return self.title
+    
+class Skill(models.Model):
+    name = models.CharField(max_length=50)
+    icon = models.URLField()  # URL dell'immagine dell'icona
+    description = models.TextField()
+    level = models.CharField(max_length=20, choices=[
+        ('Base', 'Base'),
+        ('Medio-Basso', 'Medio-Basso'),
+        ('Intermedio', 'Intermedio'),
+        ('Medio-Alto', 'Medio-Alto'),
+        ('Avanzato', 'Avanzato'),
+    ])
+    is_framework = models.BooleanField(default=False)  # True se è un framework, False se è un linguaggio
+
+    def __str__(self):
+        return self.name
