@@ -19,6 +19,23 @@ import AOS from "aos";
 import { gsap } from 'gsap';
 
 const CVPage = () => {
+
+  useEffect(() => {
+    gsap.fromTo(".card", 
+      { 
+        x: 100,
+        ease: "back.out(1.7)",
+         duration: 1,
+         stagger: 0.1
+      },
+      { 
+      x: 0,
+      ease: "back.out(1.7)",
+       duration: 1,
+       stagger: 0.1
+    });
+  }, []);
+
   useEffect(() => {
     AOS.init();
   }, []);
@@ -85,7 +102,7 @@ const CVPage = () => {
 
       {/* CARD SINISTRA (con scorrimento) */}
       <Grid item xs={12} md={4} sx={{ overflowY: "auto", maxHeight: "100%" }}>
-        <Card sx={{ margin: 2, padding: 3 }}>
+        <Card className="card" sx={{ margin: 2, padding: 3}}>
           <Typography variant="h4" gutterBottom>
             About Me
             <Divider sx={{ paddingTop: 1.5 }} />
@@ -100,7 +117,7 @@ const CVPage = () => {
         </Card>
 
         {/* MY SKILLS */}
-        <Card mt={3} sx={{ margin: 2, padding: 3 }}>
+        <Card className="card" mt={3} sx={{ margin: 2, padding: 3 }}>
           <Box>
             <Typography variant="h6">Languages:</Typography>
             <Stack direction="row" spacing={2} sx={{ flexWrap: 'wrap' }}>
@@ -157,7 +174,7 @@ const CVPage = () => {
           </Box>
         </Card>
 
-        <Card mt={3} sx={{ margin: 2, padding: 3 }}>
+        <Card className="card" mt={3} sx={{ margin: 2, padding: 3 }}>
           <Typography variant="h4" gutterBottom>
             My Work
             <Divider sx={{ paddingTop: 1.5 }} />
@@ -171,7 +188,7 @@ const CVPage = () => {
           </List>
         </Card>
 
-        <Card mt={3} sx={{ margin: 2, padding: 3 }}>
+        <Card className="card" mt={3} sx={{ margin: 2, padding: 3 }}>
           <Typography variant="h4" gutterBottom>
             Contact Me
             <Divider sx={{ paddingTop: 1.5 }} />
