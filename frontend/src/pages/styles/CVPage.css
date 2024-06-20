@@ -1,134 +1,39 @@
-.body_CVpage {
-  font-family: 'Roboto', sans-serif;
-  color: #fff;
-  background-color: #111;
-  display: flex;
-  flex-direction: column;
-  height: 100%;
-  overflow: hidden;
+@import url('https://fonts.googleapis.com/css?family=Exo:400,700');
+
+*{
+    margin: 0px;
+    padding: 0px;
 }
 
-/* .cv-container {
-  display: flex;
-  flex: 1 1;
-  flex-wrap: wrap;
-} */
-
-.cv-sidebar {
-  background-color: #353535;
-  padding: 40px;
-  width: 20%;
-  /* Sidebar occupa il 30% della larghezza */
-  border-radius: 12px;
-  text-align: center;
-
+.circles{
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
 }
 
-.cv-main {
-  width: 70%;
-  /* Main content occupa il 70% della larghezza */
-  padding: 30px;
-  display: flex;
-  flex-wrap: nowrap;
-  width: 100%;
+.circles li{
+    position: absolute;
+    display: block;
+    list-style: none;
+    width: 20px;
+    animation: animate 25s linear infinite;
+    bottom: 5px;
 }
 
-.cv-footer {
-  background-color: #111;
-  color: #fff;
-  text-align: center;
-  width: 100%;
-  /* Footer occupa tutta la larghezza */
-  margin-top: auto;
-  /* Footer in fondo */
-  border-top: #1b1b11 solid 1px;
-}
+@keyframes animate {
 
-.sidebar-content {
-  margin-bottom: 20px;
-}
+    0%{
 
-.cv-title {
-  font-size: 2.8em;
-  margin-bottom: 15px;
-  color: #fff;
-}
+        transform: translateY(-1000px) rotate(720deg);
+        opacity: 1;
+    }
 
-.cv-subtitle {
-  font-size: 1.5em;
-  margin-bottom: 10px;
-  color: #ddd;
-  /* Grigio chiaro per il sottotitolo */
-}
+    100%{
+      transform: translateY(0) rotate(0deg);
+      opacity: 0;
+    }
 
-.cv-description {
-  color: #ddd;
-}
-
-.section {
-  margin-bottom: 30px;
-  /* Spaziatura maggiore tra le sezioni */
-}
-
-.section-title {
-  color: #8C52FF;
-  /* Viola per i titoli delle sezioni */
-  font-weight: bold;
-  font-size: 1.5rem;
-  margin-bottom: 15px;
-  /* Più spazio sotto i titoli */
-}
-
-.section-list {
-  list-style: none;
-  /* Rimuovi i punti elenco */
-  padding: 0;
-}
-
-.section-list li {
-  margin-bottom: 10px;
-  /* Più spazio tra gli elementi della lista */
-}
-
-/* Stile delle icone */
-.section-list li svg {
-  margin-right: 8px;
-  color: #8C52FF;
-  /* Viola per le icone */
-}
-
-.download-button {
-  background-color: #8C52FF;
-  color: white;
-  border: none;
-  padding: 12px 24px;
-  /* Pulsante più grande */
-  border-radius: 5px;
-  cursor: pointer;
-  transition: background-color 0.3s ease;
-  font-weight: bold;
-  /* Testo in grassetto */
-}
-
-.download-button:hover {
-  background-color: #6829bb;
-  /* Viola più scuro all'hover */
-}
-
-.MuiLinearProgress-root {
-  height: 12px;
-  border-radius: 6px;
-  background-color: #333;
-  /* Grigio scuro per lo sfondo delle barre di progresso */
-}
-
-.MuiLinearProgress-bar {
-  background-color: #8C52FF;
-}
-
-/* Media query per schermi più piccoli */
-@media (max-width: 768px) {
-  .cv-container {
-    grid-template-columns: 1fr;
-  }
 }

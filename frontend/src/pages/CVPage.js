@@ -20,7 +20,13 @@ import { gsap } from "gsap";
 
 import fotoProfilo from "../fotoProfilo.jpg";
 
+import "./styles/CVPage.css";
+
 const CVPage = () => {
+  const [skills, setSkills] = useState([]);
+  const [imageHeights, setImageHeights] = useState([]);
+  const [circleStyles, setCircleStyles] = useState([]);
+
   useEffect(() => {
     gsap.fromTo(
       ".card",
@@ -43,13 +49,27 @@ const CVPage = () => {
     AOS.init();
   }, []);
 
-  const [skills, setSkills] = useState([]);
-
   useEffect(() => {
     fetch("http://127.0.0.1:8000/skills/")
       .then((response) => response.json())
       .then((data) => setSkills(data));
   }, []);
+
+  useEffect(() => {
+    const heights = skills.map((skill) => Math.random() * 150 + 50);
+    setImageHeights(heights);
+
+    // Genera stili CSS casuali per ogni cerchio
+    const randomStyles = skills.map((_, index) => ({
+      left: `${Math.random() * 90}%`,
+      width: `${Math.random() * 60 + 30}px`,
+      animationDelay: `-${
+        ((Math.random() * 100) / 100) * (Math.random() * 20 + 15)
+      }s`,
+      animationDuration: `${Math.random() * 20 + 10}s`,
+    }));
+    setCircleStyles(randomStyles);
+  }, [skills]);
 
   return (
     <Grid
@@ -58,8 +78,38 @@ const CVPage = () => {
         height: "100%", // Occupa tutta l'altezza della viewport
         width: "100%", // Occupa tutta la larghezza della viewport
         marginTop: 0,
+        position: "relative",
+        overflow: "hidden",
+        /* Se non vuoi scroll sul genitore */
       }}
+      className="CVPage"
     >
+      <ul className="circles">
+        {skills.map((skill, index) => (
+          <li
+            key={skill.id}
+            style={{
+              ...circleStyles[index], // Applica gli stili CSS casuali
+              position: "absolute",
+            }}
+          >
+            <img
+              alt={skill.name}
+              src={skill.icon}
+              style={{
+                height: `${imageHeights[index]}px`,
+                cursor: "pointer",
+                width: "100%", // Immagine riempie il cerchio
+                objectFit: "contain", // Mantiene le proporzioni dell'immagine
+              }}
+              onClick={() => {
+                /* Gestore dell'evento click */
+              }}
+            />
+          </li>
+        ))}
+      </ul>
+
       {/* CONTENUTO DESTRA (immagine, titolo, ecc.) */}
       <Grid
         item
@@ -70,11 +120,12 @@ const CVPage = () => {
           flexDirection: "column",
           alignItems: "center",
           justifyContent: "center",
+          zIndex: 1,
         }}
       >
         {/* Inserisci qui l'immagine */}
         <img
-          src="https://bairesdev.mo.cloudinary.net/blog/2022/08/portrait-of-a-man-using-a-computer-in-a-modern-office-picture-id1344688156-1.jpg?tx=w_1920,q_auto" //{fotoProfilo}
+          src={fotoProfilo} //"https://bairesdev.mo.cloudinary.net/blog/2022/08/portrait-of-a-man-using-a-computer-in-a-modern-office-picture-id1344688156-1.jpg?tx=w_1920,q_auto" //
           alt="Foto Profilo"
           style={{
             width: "200px",
@@ -219,7 +270,7 @@ const CVPage = () => {
 
         <Card className="card" mt={3} sx={{ margin: 2, padding: 3 }}>
           <Typography variant="h4" gutterBottom>
-            My Work
+            Soft Skill
             <Divider sx={{ paddingTop: 1.5 }} />
           </Typography>
           <List>
