@@ -24,3 +24,11 @@ class Skill(models.Model):
 
     def __str__(self):
         return self.name
+    
+class SoftSkill(models.Model):
+    name = models.CharField(max_length=50)
+    image = models.FileField(upload_to='softSkill_images/')
+    description = models.TextField()
+
+    def __str__(self):
+        return self.name

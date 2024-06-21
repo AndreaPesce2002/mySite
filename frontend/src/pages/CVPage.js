@@ -4,8 +4,6 @@ import {
   Typography,
   Box,
   List,
-  ListItem,
-  ListItemText,
   TextField,
   Card,
   Button,
@@ -13,7 +11,6 @@ import {
 
 import Swal from "sweetalert2"; // Importa SweetAlert2
 
-import Stack from "@mui/material/Stack";
 import Divider from "@mui/material/Divider";
 import AOS from "aos";
 import { gsap } from "gsap";
@@ -24,6 +21,7 @@ import "./styles/CVPage.css";
 
 const CVPage = () => {
   const [skills, setSkills] = useState([]);
+  const [Softskills, setSoftSkills] = useState([]);
   const [imageHeights, setImageHeights] = useState([]);
   const [circleStyles, setCircleStyles] = useState([]);
 
@@ -53,6 +51,12 @@ const CVPage = () => {
     fetch("http://127.0.0.1:8000/skills/")
       .then((response) => response.json())
       .then((data) => setSkills(data));
+  }, []);
+
+  useEffect(() => {
+    fetch("http://127.0.0.1:8000/softskills/")
+      .then((response) => response.json())
+      .then((data) => setSoftSkills(data));
   }, []);
 
   useEffect(() => {
@@ -110,7 +114,7 @@ const CVPage = () => {
         ))}
       </ul>
 
-      {/* CONTENUTO DESTRA (immagine, titolo, ecc.) */}
+      {/* CONTENUTO SINISTRA (immagine, titolo, ecc.) */}
       <Grid
         item
         xs={12}
@@ -121,6 +125,8 @@ const CVPage = () => {
           alignItems: "center",
           justifyContent: "center",
           zIndex: 1,
+          marginBottom: "15px",
+          marginTop: "20px"
         }}
       >
         {/* Inserisci qui l'immagine */}
@@ -143,12 +149,16 @@ const CVPage = () => {
         </Typography>
 
         <Box mt={3}>
-          {" "}
-          {/* Margine superiore per i pulsanti */}
-          <Button variant="contained" color="primary" sx={{ marginRight: 2 }}>
+          <Button
+            variant="contained"
+            sx={{ backgroundColor: "#8C52FF", color: "white", marginRight: 2 }}
+          >
             Download CV
           </Button>
-          <Button variant="outlined" color="primary">
+          <Button
+            variant="outlined"
+            sx={{ borderColor: "#8C52FF", color: "#8C52FF" }}
+          >
             Contattami
           </Button>
         </Box>
@@ -193,7 +203,7 @@ const CVPage = () => {
             Inoltre, ho recentemente completato un corso avanzato con{" "}
             <b>UMANA Forma</b>, dove ho perfezionato le mie abilità di{" "}
             <b>lavoro di squadra</b> e approfondito la mia conoscenza di{" "}
-            <b>Python e Docker</b>. tune share more_vert
+            <b>Python e Docker</b>.
           </Typography>
         </Card>
 
@@ -201,10 +211,16 @@ const CVPage = () => {
         <Card className="card" mt={3} sx={{ margin: 2, padding: 3 }}>
           <Box>
             <Typography variant="h4" gutterBottom>
-              Linguages:
+              Hard Skills:
               <Divider sx={{ paddingTop: 1.5 }} />
             </Typography>
-            <Stack direction="row" spacing={2} sx={{ flexWrap: "wrap" }}>
+            <List
+              sx={{
+                justifyContent: "flex-start",
+                flexWrap: "wrap",
+                alignContent: "space-around",
+              }}
+            >
               {skills
                 .filter((skill) => !skill.is_framework)
                 .map((skill) => (
@@ -232,11 +248,17 @@ const CVPage = () => {
                     }}
                   />
                 ))}
-            </Stack>
+            </List>
           </Box>
           <Box mt={2}>
             <Typography variant="h6">Frameworks:</Typography>
-            <Stack direction="row" spacing={2}>
+            <List
+              sx={{
+                justifyContent: "flex-start",
+                flexWrap: "wrap",
+                alignContent: "space-around",
+              }}
+            >
               {skills
                 .filter((skill) => skill.is_framework)
                 .map((skill) => (
@@ -264,21 +286,43 @@ const CVPage = () => {
                     }}
                   />
                 ))}
-            </Stack>
+            </List>
           </Box>
         </Card>
 
         <Card className="card" mt={3} sx={{ margin: 2, padding: 3 }}>
           <Typography variant="h4" gutterBottom>
-            Soft Skill
+            Soft Skills
             <Divider sx={{ paddingTop: 1.5 }} />
           </Typography>
-          <List>
-            {/* Inserisci qui i tuoi progetti */}
-            <ListItem>
-              <ListItemText primary="Progetto 1 - Descrizione" />
-            </ListItem>
-            {/* ... altri progetti ... */}
+          <List
+            sx={{
+              justifyContent: "space-around",
+              flexWrap: "wrap",
+              alignContent: "space-around",
+            }}
+          >
+            {Softskills.filter((skill) => !skill.is_framework).map((skill) => (
+              <div
+                style={{
+                  textAlign: "center",
+                  height: 200,
+                  width: 200,
+                }}
+              >
+                <img
+                  key={skill.id}
+                  alt={skill.name}
+                  src={"http://127.0.0.1:8000" + skill.image}
+                  style={{
+                    height: 150,
+                    width: 150,
+                    //cursor: "pointer",
+                  }}
+                />
+                <h2>{skill.name}</h2>
+              </div>
+            ))}
           </List>
         </Card>
 

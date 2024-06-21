@@ -42,7 +42,7 @@ const TypingText = () => {
       <div className="welcome-text">Hello & Welcome</div>
       <div className="typing-text">
         <span
-          className={showCursor ? "typing-cursor " : "typing-cursor"}
+          className={showCursor ? "typing-cursor show-cursor" : "typing-cursor"}
           dangerouslySetInnerHTML={{ __html: text }}
         />
       </div>
