@@ -9,7 +9,7 @@ import {
   Button,
 } from "@mui/material";
 
-import Swal from "sweetalert2"; // Importa SweetAlert2
+import Swal from "sweetalert2";
 
 import Divider from "@mui/material/Divider";
 import AOS from "aos";
@@ -102,7 +102,6 @@ const CVPage = () => {
               src={skill.icon}
               style={{
                 height: `${imageHeights[index]}px`,
-                cursor: "pointer",
                 width: "100%", // Immagine riempie il cerchio
                 objectFit: "contain", // Mantiene le proporzioni dell'immagine
               }}

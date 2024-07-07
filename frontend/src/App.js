@@ -7,6 +7,7 @@ import Work from "./pages/work.js";
 import CV from "./pages/CVPage.js";
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
+import { gsap } from "gsap";
 
 function App() {
   const darkTheme = createTheme({
@@ -15,6 +16,25 @@ function App() {
       // Personalizza i colori qui se necessario
     },
   });
+
+
+  gsap.fromTo(
+    ".voceMenu",
+    {
+      x: 500, // Posizione iniziale fuori schermo
+      ease: "back.out(1.7)",
+      duration: 1,
+      stagger: 0.1,
+    },
+    {
+      x: 0, // Posizione finale dentro schermo
+      opacity: 1, // Opacità finale 1 (completamente opaco)
+      ease: "back.out(1.7)",
+      duration: 1,
+      stagger: 0.1,
+    }
+  );
+
 
   // Definisci i tuoi link del menu
   const menuItems = [
@@ -32,6 +52,7 @@ function App() {
 
   const [ultimoScrollY, setUltimoScrollY] = useState(0);
   const [nascondiHeader, setNascondiHeader] = useState(false);
+  const [navOpen, setNavOpen] = useState(false);
 
   const pageVariants = {
     initial: { opacity: 0 },
@@ -76,6 +97,36 @@ function App() {
     };
   }, [ultimoScrollY, nascondiHeader]);
 
+  const handleToggleNav = () => {
+    setNavOpen(!navOpen);
+  };
+
+  useEffect(() => {
+    const checkWindowSize = () => {
+      if (window.innerWidth > 768) {
+        setNavOpen(false);
+      }
+    };
+
+    window.addEventListener("resize", checkWindowSize);
+    checkWindowSize();
+
+    return () => window.removeEventListener("resize", checkWindowSize);
+  }, []);
+
+  useEffect(() => {
+    if (navOpen) {
+      window.scrollTo({ top: document.body.scrollHeight, behavior: "smooth" }); // Scroll verso il basso
+      // Dopo un breve ritardo, blocca lo scroll
+      setTimeout(() => {
+        document.body.style.overflow = "hidden"; // Blocca lo scroll
+      }, 500); // Aspetta 500ms prima di bloccare lo scroll
+    } else {
+      document.body.style.overflow = "auto"; // Blocca lo scroll
+      window.scrollTo({ top: 0, behavior: "smooth" }); // Scroll verso l'alto
+    }
+  }, [navOpen]); // Assicurati che questo useEffect si attivi solo quando navOpen cambia
+
   return (
     <ThemeProvider theme={darkTheme}>
       <div className="App">
@@ -87,7 +138,7 @@ function App() {
               alt="Andrea Pesce"
             />
           </div>
-          <nav>
+          <nav className={`navMenu`}>
             <ul>
               {menuItems.map((item, index) => (
                 <li
@@ -106,7 +157,38 @@ function App() {
               ))}
             </ul>
           </nav>
+
+          <div className="toggle-btn" onClick={handleToggleNav}>
+            ☰
+          </div>
         </header>
+
+        {navOpen && (
+          <nav className={`navMenu nav-open`} >
+            <div className="toggle-btn closeMenu" onClick={handleToggleNav}>
+              X
+            </div>
+            <ul>
+              {menuItems.map((item, index) => (
+                <li
+                style={{opacity:0}}
+                  key={item.name}
+                  onClick={
+                    item.active
+                      ? () => {
+                          handleMenuItemClick(index);
+                          handleToggleNav();
+                        }
+                      : () => {}
+                  }
+                  className={`voceMenu ${item.active ? "" : "not-acrive"}`}
+                >
+                  {item.name}
+                </li>
+              ))}
+            </ul>
+          </nav>
+        )}
         <AnimatePresence mode="wait">
           <motion.div
             key={currentPage}

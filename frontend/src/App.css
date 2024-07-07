@@ -51,10 +51,6 @@ body {
   font-size: 24px;
 }
 
-.header nav {
-  display: flex;
-}
-
 .header nav a {
   color: white;
   text-decoration: none;
@@ -118,7 +114,7 @@ li {
   height: 24px;
   display: flex;
   justify-content: center;
-  align-items: flex-end;
+  align-items: center;
   flex: 1 1;
   min-width: 0;
   position: relative;
@@ -130,7 +126,7 @@ li {
 }
 
 .not-acrive {
-  color: #808080;
+  color: #808080 !important;
 }
 
 .logo {
@@ -139,4 +135,85 @@ li {
   left: 100px;
   transform: translate(-50%, -50%);
   width: 150px;
+}
+
+.nav-closed {
+  width: 100%;
+  /* Dimensione normale */
+}
+
+/* Stilo per il pulsante */
+.toggle-btn {
+  display: none;
+  flex-shrink: 0;
+  align-self: center;
+  background-color: #333;
+  color: white;
+  border: none;
+  padding: 8px 16px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+
+/* Mostra il pulsante solo su schermi piccoli */
+@media (max-width: 768px) {
+  .toggle-btn {
+    display: flex
+  }
+
+  .navMenu {
+    display: none;
+  }
+
+  .nav-open {
+    display: flex;
+    /* flex-direction: column; */
+    justify-content: center; /* Centra verticalmente gli elementi interni */
+    align-items: center; /* Centra orizzontalmente gli elementi interni */
+    width: 100%;
+    height: 100vh;
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: rgba(46, 46, 46, 0.8);
+    backdrop-filter: blur(5px);
+    z-index: 999;
+  }
+  
+  .nav-open ul {
+    list-style-type: none;
+    padding: 0;
+    margin: 0;
+    display: flex;
+    flex-direction: column;
+    align-items: center; /* Centra orizzontalmente gli elementi del menu */
+    justify-content: center; /* Centra verticalmente gli elementi del menu */
+    height: 50%; /* Prende l'altezza disponibile */
+  }
+
+
+  
+  .nav-open li {
+    padding: 20px 0; /* Spazio intorno a ciascun elemento del menu */
+    font-size: 24px; /* Dimensione del testo grande */
+    cursor: pointer;
+    text-align: center; /* Centra il testo degli elementi del menu */
+    color: white;
+  }
+  
+  .nav-open li:not(:last-child) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.2);
+  }
+
+  .closeMenu{
+    position: absolute; /* Posiziona l'elemento in modo assoluto rispetto al contenitore */
+    top: 20px; /* Distanza dal bordo superiore */
+    right: 20px; /* Distanza dal bordo destro */
+    cursor: pointer; /* Cambia il cursore in una mano quando si passa sopra */
+    font-size: 20px; /* Aumenta la dimensiocirclese del testo (opzionale) */
+    z-index: 100;
+  }
 }
