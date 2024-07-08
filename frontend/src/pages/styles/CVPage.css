@@ -16,7 +16,6 @@
 
 .circles li{
     position: absolute;
-    display: block;
     list-style: none;
     width: 20px;
     animation: animate 25s linear infinite;

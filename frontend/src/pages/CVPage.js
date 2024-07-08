@@ -16,8 +16,10 @@ import AOS from "aos";
 import { gsap } from "gsap";
 
 import fotoProfilo from "../fotoProfilo.jpg";
+import CV_pdf from "../CV.pdf";
 
 import "./styles/CVPage.css";
+import { saveAs } from 'file-saver';
 
 const CVPage = () => {
   const [skills, setSkills] = useState([]);
@@ -125,7 +127,7 @@ const CVPage = () => {
           justifyContent: "center",
           zIndex: 1,
           marginBottom: "15px",
-          marginTop: "20px"
+          marginTop: "20px",
         }}
       >
         {/* Inserisci qui l'immagine */}
@@ -151,6 +153,17 @@ const CVPage = () => {
           <Button
             variant="contained"
             sx={{ backgroundColor: "#8C52FF", color: "white", marginRight: 2 }}
+            onClick={() => {
+              Swal.fire({
+                icon: "warning",
+                title: "Pensa al futuro 🌿",
+                html: `
+        <p>Aiuta a proteggere l'ambiente: non stampare questo CV se <b>non</b> strettamente necessario.</p>
+        <p>Il tempo stringe per il nostro pianeta. Scopri di più su <a href="https://climateclock.world/clocks" target="_blank">Climate Clock</a>.</p>
+      `,
+              }); 
+              saveAs(CV_pdf, "CV Andrea Pesce.pdf");
+            }}
           >
             Download CV
           </Button>
@@ -158,7 +171,7 @@ const CVPage = () => {
             variant="outlined"
             sx={{ borderColor: "#8C52FF", color: "#8C52FF" }}
           >
-            Contattami
+            inviami un feedbek
           </Button>
         </Box>
       </Grid>
@@ -327,23 +340,40 @@ const CVPage = () => {
 
         <Card className="card" mt={3} sx={{ margin: 2, padding: 3 }}>
           <Typography variant="h4" gutterBottom>
-            Contact Me
+            All CV
             <Divider sx={{ paddingTop: 1.5 }} />
           </Typography>
-          <form>
-            <TextField fullWidth label="Name" margin="normal" />
-            <TextField fullWidth label="Email" margin="normal" />
-            <TextField
-              fullWidth
-              label="Message"
-              multiline
-              rows={4}
-              margin="normal"
-            />
-            <Button variant="contained" type="submit">
-              Send
-            </Button>
-          </form>
+          <div
+            style={{
+              position: "relative",
+              width: "100%",
+              paddingBottom: "141.4286%",
+              boxShadow: "0 2px 8px 0 rgba(63,69,81,0.16)",
+              marginTop: "1.6em",
+              marginBottom: "0.9em",
+              overflow: "hidden",
+              borderRadius: "8px",
+              willChange: "transform",
+            }}
+          >
+            <iframe
+              loading="lazy"
+              title="Canva Design Preview"
+              style={{
+                position: "absolute",
+                width: "100%",
+                height: "100%",
+                top: 0,
+                left: 0,
+                border: "none",
+                padding: 0,
+                margin: 0,
+              }}
+              src="https://www.canva.com/design/DAFmtjOCYZk/aLLGgXxagzzIg7AK_xdApw/view?embed"
+              allowFullScreen="true"
+              allow="fullscreen"
+            ></iframe>
+          </div>
         </Card>
       </Grid>
     </Grid>
