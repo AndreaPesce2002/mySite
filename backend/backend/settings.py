@@ -142,3 +142,12 @@ REST_FRAMEWORK = {
     ],
     # Aggiungi altre configurazioni del REST framework se necessario
 }
+
+
+EMAIL_BACKEND = 'django.core.mail.backends.smtp.EmailBackend'
+EMAIL_HOST = 'smtp.gmail.com'  # Usiamo Gmail come esempio
+EMAIL_PORT = 587
+EMAIL_USE_TLS = True
+EMAIL_HOST_USER = 'andreapesce2002@gmail.com'
+EMAIL_HOST_PASSWORD = 'fahz oscf xigj tgrs'
+APPEND_SLASH = False

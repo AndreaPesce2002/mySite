@@ -19,7 +19,7 @@ import fotoProfilo from "../fotoProfilo.jpg";
 import CV_pdf from "../CV.pdf";
 
 import "./styles/CVPage.css";
-import { saveAs } from 'file-saver';
+import { saveAs } from "file-saver";
 
 const CVPage = () => {
   const [skills, setSkills] = useState([]);
@@ -158,10 +158,12 @@ const CVPage = () => {
                 icon: "warning",
                 title: "Pensa al futuro 🌿",
                 html: `
-        <p>Aiuta a proteggere l'ambiente: non stampare questo CV se <b>non</b> strettamente necessario.</p>
-        <p>Il tempo stringe per il nostro pianeta. Scopri di più su <a href="https://climateclock.world/clocks" target="_blank">Climate Clock</a>.</p>
+        <p>Aiuta a proteggere l'ambiente: <b>non</b> stampare questo CV se non strettamente necessario.</p>
+        <p>Il tempo stringe per il nostro pianeta. Scopri di più su <a href="https://climateclock.world/clocks" target="_blank">Climate Clock</a> oppure guarda il video sottostante.</p>
+        <br>
+        <iframe id="video" href="#video" width="100%" height="255" src="https://www.youtube.com/embed/e-MKABeo9Ac?si=-coBgt8EJRmUVrqi" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share" referrerpolicy="strict-origin-when-cross-origin" allowfullscreen></iframe>
       `,
-              }); 
+              });
               saveAs(CV_pdf, "CV Andrea Pesce.pdf");
             }}
           >
@@ -170,6 +172,58 @@ const CVPage = () => {
           <Button
             variant="outlined"
             sx={{ borderColor: "#8C52FF", color: "#8C52FF" }}
+            onClick={() => {
+              Swal.fire({
+                title: "Aiutami a migliorare",
+                input: "textarea",
+                inputAttributes: {
+                  autocapitalize: "off",
+                },
+                showCancelButton: true,
+                confirmButtonText: "Invia Feedback",
+                showLoaderOnConfirm: true,
+                preConfirm: async (feedback) => {
+                  // Controlla se il feedback è vuoto
+                  if (!feedback.trim()) {
+                    Swal.showValidationMessage(
+                      "Il campo feedback non può essere vuoto."
+                    );
+                    return false; // Annulla l'invio senza procedere ulteriormente
+                  }
+
+                  try {
+                    const response = await fetch(
+                      "http://127.0.0.1:8000/send-email/",
+                      {
+                        method: "POST",
+                        headers: {
+                          "Content-Type": "application/json",
+                        },
+                        body: JSON.stringify({
+                          feedback: feedback,
+                        }),
+                      }
+                    );
+
+                    if (!response.ok) {
+                      throw new Error(response.statusText);
+                    }
+
+                    return true; // Indica successo a Swal
+                  } catch (error) {
+                    Swal.showValidationMessage(`Invio non riuscito: ${error}`);
+                  }
+                },
+                allowOutsideClick: () => !Swal.isLoading(),
+              }).then((result) => {
+                if (result.isConfirmed) {
+                  Swal.fire({
+                    title: "Grazie per il tuo feedback!",
+                    icon: "success",
+                  });
+                }
+              });
+            }}
           >
             inviami un feedbek
           </Button>
