@@ -409,6 +409,7 @@ const CVPage = () => {
               borderRadius: "8px",
               willChange: "transform",
             }}
+            className="full_CV"
           >
             <iframe
               loading="lazy"
@@ -417,7 +418,7 @@ const CVPage = () => {
                 position: "absolute",
                 width: "100%",
                 height: "100%",
-                top: 0,
+                bottom: 0,
                 left: 0,
                 border: "none",
                 padding: 0,

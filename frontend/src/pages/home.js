@@ -53,18 +53,24 @@ const TypingText = () => {
           url="https://github.com/AndreaPesce2002"
           bgColor="white"
           fgColor="black"
+          target="_blank"
+          rel="noopener noreferrer"
         />
         <SocialIcon
           className="custom-class"
           url="https://www.linkedin.com/in/andrea-pesce-080542202/"
           bgColor="white"
           fgColor="black"
+          target="_blank"
+          rel="noopener noreferrer"
         />
         <SocialIcon
           className="custom-class"
           url="https://codepen.io/Andrea-Pesce-002"
           bgColor="white"
           fgColor="black"
+          target="_blank"
+          rel="noopener noreferrer"
         />
         {/* E così via per gli altri network */}
       </div>

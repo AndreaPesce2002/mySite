@@ -1,11 +1,11 @@
 @import url('https://fonts.googleapis.com/css?family=Exo:400,700');
 
-*{
+* {
     margin: 0px;
     padding: 0px;
 }
 
-.circles{
+.circles {
     position: absolute;
     top: 0;
     left: 0;
@@ -14,7 +14,7 @@
     overflow: hidden;
 }
 
-.circles li{
+.circles li {
     position: absolute;
     list-style: none;
     width: 20px;
@@ -24,15 +24,24 @@
 
 @keyframes animate {
 
-    0%{
+    0% {
 
         transform: translateY(-1000px) rotate(720deg);
         opacity: 1;
     }
 
-    100%{
-      transform: translateY(0) rotate(0deg);
-      opacity: 0;
+    100% {
+        transform: translateY(0) rotate(0deg);
+        opacity: 0;
     }
 
 }
+
+/* Stile specifico per dimensioni di finestra minori a 900px */
+@media (max-width: 899px) {
+    .full_CV {
+        padding-bottom: 200%;
+        border-bottom: 400px solid transparent;
+    }
+}
+
