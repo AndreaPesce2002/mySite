@@ -3,7 +3,7 @@ version: '3.7'
 services:
 
   ccat:
-    image: username/ccatmysite:latest
+    image: andrea002/ccatmysite:latest
     ports:
       - ${CORE_PORT:-1864}:80
     container_name: CCAT_mySite
