@@ -5,6 +5,7 @@ import CatChat from "./pages/Components/widget_CCAT.js";
 import Home from "./pages/home.js";
 import Work from "./pages/work.js";
 import CV from "./pages/CVPage.js";
+import Contact from "./pages/contact.js"
 import { ThemeProvider } from "@mui/material/styles";
 import { createTheme } from "@mui/material/styles";
 import { gsap } from "gsap";
@@ -16,7 +17,6 @@ function App() {
       // Personalizza i colori qui se necessario
     },
   });
-
 
   gsap.fromTo(
     ".voceMenu",
@@ -35,13 +35,12 @@ function App() {
     }
   );
 
-
   // Definisci i tuoi link del menu
   const menuItems = [
     { name: "Home", path: "/home", active: true },
     { name: "Work", path: "/work", active: true },
     { name: "CV", path: "/cv", active: true },
-    { name: "Contact", path: "/contact", active: false },
+    { name: "Contact", path: "/contact", active: true },
   ];
 
   const [currentPage, setCurrentPage] = useState(menuItems[0].name);
@@ -74,6 +73,8 @@ function App() {
         return <Work />;
       case menuItems[2].name:
         return <CV />;
+      case menuItems[3].name:
+        return <Contact />;
       default:
         return <Home />;
     }
@@ -164,14 +165,14 @@ function App() {
         </header>
 
         {navOpen && (
-          <nav className={`navMenu nav-open`} >
+          <nav className={`navMenu nav-open`}>
             <div className="toggle-btn closeMenu" onClick={handleToggleNav}>
               X
             </div>
             <ul>
               {menuItems.map((item, index) => (
                 <li
-                style={{opacity:0}}
+                  style={{ opacity: 0 }}
                   key={item.name}
                   onClick={
                     item.active
