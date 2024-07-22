@@ -31,9 +31,8 @@ class SoftSkillListView(APIView):
 def send_feedback_email(request):
     if request.method == 'POST':
         data = json.loads(request.body)
-        feedback = data.get('feedback', '')
-        subject = 'Hai ricevuto un nuovo feedback'
-        message = f'Hai ricevuto un nuovo feedback ecco il contenuto:\n\n{feedback}'
+        message = data.get('message', '')
+        subject = data.get('subject', '')
         from_email = 'andrea.pesce.lavoro@gmail.com'
         recipient_list = ['andrea.pesce.lavoro@gmail.com']
 

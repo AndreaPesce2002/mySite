@@ -200,7 +200,8 @@ const CVPage = () => {
                           "Content-Type": "application/json",
                         },
                         body: JSON.stringify({
-                          feedback: feedback,
+                          message: 'Hai ricevuto un nuovo feedback ecco il contenuto:\n\n'+feedback,
+                          subject: 'Hai ricevuto un nuovo feedback'
                         }),
                       }
                     );
