@@ -44,3 +44,15 @@
     height: 100%;
     transform: scale(1);
 }
+
+@media (min-width: 850px) {
+    #contact {
+      background: radial-gradient(130% 90% at 50% 20%, rgb(0, 0, 0) 40%, rgba(140, 82, 255, 0.2) 100%);
+    }
+  }
+  
+  @media (max-width: 851px) {
+    #contact .contact-wrapper {
+      background: radial-gradient(130% 90% at 50% 20%, rgb(0, 0, 0) 40%, rgba(140, 82, 255, 0.2) 100%);
+    }
+  }
