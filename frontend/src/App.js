@@ -134,7 +134,7 @@ function App() {
         <header className={`header ${nascondiHeader ? "nascondi" : ""}`}>
           <div className="brand">
             <img
-              src={require("./logo.png")}
+              src={require("./data/logo.png")}
               className="logo"
               alt="Andrea Pesce"
             />
@@ -205,7 +205,10 @@ function App() {
           </motion.div>
         </AnimatePresence>
 
-        <CatChat />
+        {currentPage !== menuItems[3].name && (
+          <CatChat />
+        )}
+        
       </div>
     </ThemeProvider>
   );

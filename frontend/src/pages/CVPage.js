@@ -4,7 +4,6 @@ import {
   Typography,
   Box,
   List,
-  TextField,
   Card,
   Button,
 } from "@mui/material";
@@ -15,8 +14,8 @@ import Divider from "@mui/material/Divider";
 import AOS from "aos";
 import { gsap } from "gsap";
 
-import fotoProfilo from "../fotoProfilo.jpg";
-import CV_pdf from "../CV.pdf";
+import fotoProfilo from "../data/fotoProfilo.jpg";
+import CV_pdf from "../data/CV.pdf";
 
 import "./styles/CVPage.css";
 import { saveAs } from "file-saver";
