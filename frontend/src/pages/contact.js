@@ -1,4 +1,4 @@
-import React, { useState, useEffect } from 'react';
+import React, { useState, useEffect, useRef } from 'react';
 import { jwtDecode } from "jwt-decode";
 import axios from 'axios';
 import "./styles/contact.css";
@@ -19,9 +19,7 @@ import {
 } from '@mui/material';
 
 import { Visibility, VisibilityOff } from '@mui/icons-material';
-
 import { gsap } from 'gsap';
-
 import Chat from './chat_user';
 
 function Contact() {
@@ -31,17 +29,19 @@ function Contact() {
   const [showPassword, setShowPassword] = useState(false);
   const [name, setName] = useState('');
   const [isLoginActive, setIsLoginActive] = useState(false);
+  const buttonRef = useRef(null);
+  const [buttonAngle, setButtonAngle] = useState(0);
 
   const animateSwitch = () => {
-    const height = '-70px'
+    const height = '-80px'
     const time = 0.7
     if (!isLoginActive) {
       gsap.to(".name-login", { rotationX: 90, duration: time });
-      gsap.to(".card-login", { height: '220px', duration: time });
+      gsap.to(".card-login", { height: '200px', duration: time });
       gsap.to(".email-login", { translateY: height, duration: time });
       gsap.to(".password-login", { translateY: height, duration: time });
       gsap.to(".submit-login", { translateY: height, duration: time });
-      gsap.to(".submit-login", { rotationX: 360, duration: time });
+      gsap.to(".submit-login", { rotationX: 180, duration: time });
     } else {
       gsap.to(".name-login", { rotationX: 0, duration: time });
       gsap.to(".card-login", { height: '280px', duration: time });
@@ -261,6 +261,20 @@ function Contact() {
     ease: 'power1.inOut',
   });
 
+  useEffect(() => {
+    const updateDegree = () => {
+      if (buttonRef.current) {
+        const transform = getComputedStyle(buttonRef.current).transform;
+        const degrees = parseFloat(transform.split(',')[5]); // Modifica questo numero se stai usando una proprietà diversa
+        setButtonAngle(degrees);
+      }
+      requestAnimationFrame(updateDegree);
+    };
+
+    updateDegree();
+  }, []);
+
+
   //controlla che nella pagina ci sia la il cookies auth_token
   useEffect(() => {
     animateSwitch();
@@ -315,9 +329,8 @@ function Contact() {
               Accedi o Registra
             </Typography>
 
-
-            <Grid item xs={12} className='card-login'>
-              <form onSubmit={isLoginActive ? (e) => handleSubmit(e) : (e) => handleSubmitRegister(e)} id="login-form" className='flip-card-front'>
+            <Grid item className='card-login'>
+              <form onSubmit={isLoginActive ? (e) => handleSubmit(e) : (e) => handleSubmitRegister(e)} id="login-form">
                 <TextField
                   label="Nome"
                   variant="outlined"
@@ -362,22 +375,18 @@ function Contact() {
                     name='password'
                   />
                 </FormControl>
-
-                <Button type="submit" variant="contained" color="primary" fullWidth className='submit-login'>
-                  {isLoginActive ? 'Accedi' : 'Registrati'}
+               
+                <Button type="submit" ref={buttonRef} variant="contained" color="primary" fullWidth className='submit-login'>
+                  <p style={buttonAngle<0 ? { transform: 'rotateX(180deg)' } : {  }}>{buttonAngle<0 ? 'Accedi' : 'Registrati'}</p>
                 </Button>
               </form>
-
             </Grid>
 
-
             <Button onClick={animateSwitch} sx={{ mt: 1, position: 'relative' }} className='flip-button'>
-              {isLoginActive ? 'Passa a registrazione' : 'Torna al login'}
+              {isLoginActive ? 'Registrati' : 'Fai Login'}
             </Button>
           </Paper>
         </Container>
-
-
       )}
     </>
   );
