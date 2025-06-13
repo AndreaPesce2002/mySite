@@ -4,6 +4,8 @@ from rest_framework.response import Response
 from rest_framework import status
 from .models import Work,Skill,SoftSkill, Chat
 from .serializers import WorkSerializer,SkillSerializer,SoftSkillSerializer,ChatSerializer,MessaggioSerializer
+from drf_yasg.utils import swagger_auto_schema
+from drf_yasg import openapi
 
 from django.http import JsonResponse
 from django.views.decorators.csrf import csrf_exempt
@@ -37,24 +39,63 @@ from django.conf import settings
 from functools import wraps
 
 class WorkListView(APIView):
+    @swagger_auto_schema(
+        operation_description="Ottiene la lista di tutti i lavori",
+        responses={
+            200: openapi.Response('Lista dei lavori', WorkSerializer(many=True))
+        }
+    )
     def get(self, request):
         works = Work.objects.all()
         serializer = WorkSerializer(works, many=True)
         return Response(serializer.data)
     
 class SkillListView(APIView):
+    @swagger_auto_schema(
+        operation_description="Ottiene la lista di tutte le competenze",
+        responses={
+            200: openapi.Response('Lista delle competenze', SkillSerializer(many=True))
+        }
+    )
     def get(self, request):
         skill = Skill.objects.all()
         serializer = SkillSerializer(skill, many=True)
         return Response(serializer.data)
 
 class SoftSkillListView(APIView):
+    @swagger_auto_schema(
+        operation_description="Ottiene la lista di tutte le soft skills",
+        responses={
+            200: openapi.Response('Lista delle soft skills', SoftSkillSerializer(many=True))
+        }
+    )
     def get(self, request):
         Softskill = SoftSkill.objects.all()
         serializer = SoftSkillSerializer(Softskill, many=True)
         return Response(serializer.data)
 
 @csrf_exempt
+@api_view(['POST'])
+@swagger_auto_schema(
+    request_body=openapi.Schema(
+        type=openapi.TYPE_OBJECT,
+        required=['message', 'subject'],
+        properties={
+            'message': openapi.Schema(type=openapi.TYPE_STRING, description='Contenuto del messaggio'),
+            'subject': openapi.Schema(type=openapi.TYPE_STRING, description='Oggetto dell\'email'),
+        },
+    ),
+    responses={
+        200: openapi.Response('Email inviata con successo', openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            properties={
+                'status': openapi.Schema(type=openapi.TYPE_STRING, description='Stato dell\'operazione'),
+            }
+        )),
+        400: 'Richiesta non valida',
+    },
+    operation_description="Invia un'email di feedback"
+)
 def send_feedback_email(request):
     if request.method == 'POST':
         data = json.loads(request.body)
@@ -127,6 +168,28 @@ class ChatView(ModelViewSet):
 
         return wrapper
 
+    @swagger_auto_schema(
+        operation_description="Crea un nuovo utente",
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            required=['username', 'email', 'password'],
+            properties={
+                'username': openapi.Schema(type=openapi.TYPE_STRING, description='Nome utente'),
+                'email': openapi.Schema(type=openapi.TYPE_STRING, description='Indirizzo email'),
+                'password': openapi.Schema(type=openapi.TYPE_STRING, description='Password'),
+            },
+        ),
+        responses={
+            201: openapi.Response('Utente creato con successo', openapi.Schema(
+                type=openapi.TYPE_OBJECT,
+                properties={
+                    'status': openapi.Schema(type=openapi.TYPE_STRING, description='Stato dell\'operazione'),
+                }
+            )),
+            400: 'Richiesta non valida',
+            404: 'Elemento già esistente',
+        }
+    )
     @action(detail=False, methods=['post'], url_path='create-chat')
     def create(self, request):
         # Crea una nuova chat
@@ -161,6 +224,29 @@ class ChatView(ModelViewSet):
         except Chat.DoesNotExist:
             return Response({'status': 'not found'}, status=status.HTTP_404_NOT_FOUND)
     
+    @swagger_auto_schema(
+        operation_description="Effettua il login",
+        request_body=openapi.Schema(
+            type=openapi.TYPE_OBJECT,
+            required=['email', 'password'],
+            properties={
+                'email': openapi.Schema(type=openapi.TYPE_STRING, description='Indirizzo email'),
+                'password': openapi.Schema(type=openapi.TYPE_STRING, description='Password'),
+            },
+        ),
+        responses={
+            200: openapi.Response('Login effettuato con successo', openapi.Schema(
+                type=openapi.TYPE_OBJECT,
+                properties={
+                    'status': openapi.Schema(type=openapi.TYPE_STRING, description='Stato dell\'operazione'),
+                    'message': openapi.Schema(type=openapi.TYPE_STRING, description='Messaggio di conferma'),
+                    'auth_token': openapi.Schema(type=openapi.TYPE_STRING, description='Token di autenticazione'),
+                }
+            )),
+            400: 'Utente non trovato',
+            401: 'Credenziali non valide',
+        }
+    )
     @action(detail=False, methods=['post'])
     def login(self, request):
         email = request.data.get('email')

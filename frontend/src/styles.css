@@ -1,0 +1,14 @@
+.container {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    position: relative;
+    z-index: 1;
+}
+
+.sheet {
+    position: absolute;
+    transition: left 0.1s ease, top 0.1s ease;
+    z-index: 0;
+}

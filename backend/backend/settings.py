@@ -43,6 +43,7 @@ INSTALLED_APPS = [
     'django.contrib.sessions',
     'django.contrib.messages',
     'django.contrib.staticfiles',
+    'drf_yasg',
 ]
 
 MIDDLEWARE = [
@@ -151,3 +152,6 @@ EMAIL_USE_TLS = True
 EMAIL_HOST_USER = 'andreapesce2002@gmail.com'
 EMAIL_HOST_PASSWORD = 'fahz oscf xigj tgrs'
 APPEND_SLASH = False
+
+# Imposta il modello utente personalizzato
+AUTH_USER_MODEL = 'backend.Chat'

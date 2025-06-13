@@ -1,32 +1,22 @@
 import inspect
 from io import BytesIO
 import os
-from cryptography.fernet import Fernet
-from django.db import models
-from django.utils.text import slugify
-from django.utils.translation import gettext_lazy as _
-
-from django.contrib.auth.models import AbstractUser
-from django.db import models
-from cryptography.fernet import Fernet
-
-from django.contrib.auth.models import AbstractUser, Group, Permission
-
 import secrets
 
+from cryptography.fernet import Fernet
 from cryptography.hazmat.primitives import hashes, serialization
 from cryptography.hazmat.primitives.asymmetric import ec
 
+from django.db import models
+from django.utils.text import slugify
+from django.utils.translation import gettext_lazy as _
+from django.contrib.auth.models import AbstractUser, Group, Permission
 
-
-# Modifica questi campi nel modello Chat:
-groups = models.ManyToManyField(Group, related_name='chat_groups')
-user_permissions = models.ManyToManyField(Permission, related_name='chat_user_permissions')
-
-# Se hai modificato anche il modello User, assicurati di aggiornare anche questi campi lì:
-groups = models.ManyToManyField(Group, related_name='user_groups')
-user_permissions = models.ManyToManyField(Permission, related_name='user_user_permissions')
-
+# Remove these standalone fields - they should only be inside model classes
+# groups = models.ManyToManyField(Group, related_name='chat_groups')
+# user_permissions = models.ManyToManyField(Permission, related_name='chat_user_permissions')
+# groups = models.ManyToManyField(Group, related_name='user_groups')
+# user_permissions = models.ManyToManyField(Permission, related_name='user_user_permissions')
 
 def get_upload_path(instance, filename):
     try:
